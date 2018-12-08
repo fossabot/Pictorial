@@ -66,19 +66,20 @@ class DragView : FrameLayout {
 
         override fun onViewPositionChanged(changedView: View, left: Int, top: Int, dx: Int, dy: Int) {
             val a = sqrt(((top - origin.y) * (top - origin.y) + (left - origin.x) * (left - origin.x)).toFloat())
-            val b = sqrt(((measuredHeight - origin.y) * (measuredHeight - origin.y) + (measuredHeight - origin.x) * (measuredHeight - origin.x)).toFloat())
+            val b =
+                sqrt(((measuredHeight - origin.y) * (measuredHeight - origin.y) + (measuredHeight - origin.x) * (measuredHeight - origin.x)).toFloat())
             val factor = 1 - a / (b * 0.8f)
             background.alpha = (255 * factor).toInt()
             target.scaleX = factor
             target.scaleY = factor
             /*val r = if (top > origin.y) -1 else 1
             target.rotation = factor * 90 * r*/
-            callEvent = a > b * 0.2
+            callEvent = a > b * 0.1
         }
 
         override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
             if (releasedChild == target) {
-                if (callEvent || yvel > 8000) {
+                if (callEvent || yvel > 3600 || xvel > 3600) {
                     listener?.onEvent()
                     callEvent = false
                 } else {

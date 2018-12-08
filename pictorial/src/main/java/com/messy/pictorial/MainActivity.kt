@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.DecelerateInterpolator
-import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
@@ -59,13 +58,13 @@ class MainActivity : Activity<ReadingViewModel>() {
         }
         adapter.setOnItemClickListener { view, position ->
             val intent = Intent(this, PreviewActivity::class.java)
-            val imageView = view.findViewById<ImageView>(R.id.image)
-            val textView = view.findViewById<ImageView>(R.id.text)
-            //
-            val pair2 = Pair(imageView, imageView.transitionName)
+            val imageView = view.findViewById<View>(R.id.image)
+            val textView = view.findViewById<View>(R.id.text)
             val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
-                Pair(textView, textView.transitionName)
+                Pair(imageView, imageView.transitionName),
+                Pair(textView, textView.transitionName),
+                Pair(view, "unused")
             ).toBundle()!!
             intent.putExtra("reading", adapter.data[position])
             startActivity(intent, bundle)

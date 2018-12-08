@@ -62,7 +62,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_preview"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/PreviewTheme">
+            android:theme="@style/AppTheme.Preview">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.messy.pictorial.MainActivity" />

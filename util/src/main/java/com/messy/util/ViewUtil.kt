@@ -115,9 +115,9 @@ inline val ViewGroup.first: View
 inline val ViewGroup.last: View
     get() = this.getChildAt(this.size - 1)
 
-fun ImageView.clear() {
+/*fun ImageView.clear() {
     Glide.with(this).clear(this)
-}
+}*/
 
 val RadioGroup.checkedIndex: Int?
     get() {

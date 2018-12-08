@@ -54,13 +54,13 @@
         <item name="android:layout_height">@dimen/lineHeight</item>
     </style>
 
-    <style name="PreviewTheme" parent="Base">
+    <style name="AppTheme.Preview" parent="Base">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowSharedElementEnterTransition">@transition/normal</item>
         <item name="android:windowSharedElementExitTransition">@transition/normal</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>
