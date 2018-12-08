@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TipAnim">
+        <item name="android:windowEnterAnimation">@anim/tip_enter</item>
+        <item name="android:windowExitAnimation">@anim/tip_exit</item>
+    </style>
+</resources>

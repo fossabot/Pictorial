@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dividerHeight">4dp</dimen>
+    <dimen name="padding">18dp</dimen>
+    <dimen name="lockPadding">32dp</dimen>
+    <dimen name="lockLinePadding">6dp</dimen>
+    <dimen name="lockTitleSize">18sp</dimen>
+    <dimen name="switchSize">24dp</dimen>
+    <dimen name="switchStroke">1dp</dimen>
+    <dimen name="switchRadius">4dp</dimen>
+    <dimen name="lineHeight">48dp</dimen>
+</resources>
