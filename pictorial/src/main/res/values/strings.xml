@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">锁屏画报</string>
     <string name="ACTION_USER">com.messy.pictorial.ACTION_USER</string>
-    <string name="channel_name">锁屏画报</string>
-    <string name="channel_desc">锁屏画报</string>
+    <string name="channel_name">正在运行</string>
+    <string name="channel_desc">诉说你一生的故事</string>
     <string name="lock_notification_content_title">锁屏服务</string>
     <string name="lock_notification_content_text">不浪费每一分钟。</string>
     <string name="settings">设置</string>
@@ -12,6 +12,6 @@
     <string name="last_update_time">上一次更新时间</string>
 
     <string name="title_activity_preview">PreviewActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="start_lock_service">正在启动锁屏服务</string>
+    <string name="stop_lock_service">正在关闭锁屏服务</string>
 </resources>

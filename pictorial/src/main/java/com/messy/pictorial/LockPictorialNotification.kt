@@ -1,10 +1,8 @@
 package com.messy.pictorial
 
-import android.app.Application
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.messy.util.string
@@ -45,12 +43,14 @@ class LockPictorialNotification private constructor() {
         val notificationBuilder = NotificationCompat.Builder(application.applicationContext, CHANNEL_ID)
         val contentTitle = application.applicationContext.string(R.string.channel_name)
         val contentText = application.applicationContext.string(R.string.channel_desc)
+        val pendingIntent = PendingIntent.getActivity(application, 0, Intent(application, MainActivity::class.java), 0)
         notificationBuilder
-            .setSmallIcon(R.drawable.divider)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentText(contentText)
             .setContentTitle(contentTitle)
             .setAutoCancel(false)
             .setOngoing(true)
+            .setContentIntent(pendingIntent)
         return notificationBuilder.build()
     }
 }

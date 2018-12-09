@@ -9,4 +9,6 @@
     <dimen name="switchStroke">1dp</dimen>
     <dimen name="switchRadius">4dp</dimen>
     <dimen name="lineHeight">48dp</dimen>
+    <dimen name="toggleMargin">0dp</dimen>
+    <dimen name="togglePadding">9dp</dimen>
 </resources>

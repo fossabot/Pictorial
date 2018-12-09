@@ -52,12 +52,13 @@ class PreviewActivity : AppCompatActivity() {
         mVisible = true
         photoView.minimumScale = 1f
         photoView.maximumScale = 10f
+        dragView.setDragFinishedCondition { _, xvel, yvel -> yvel > 3600 || xvel > 3600 }
         dragView.setDragEventListener { supportFinishAfterTransition() }
         photoView.setOnClickListener { toggle() }
         photoView.minimumScale = 1f
         val reading = intent!!.getParcelableExtra<Reading>("reading")
-        photoView.transitionName = reading.id
-        text.transitionName = reading.id + "text"
+        photoView.transitionName = reading.readingId
+        text.transitionName = reading.readingId + "text"
         text.text = reading.forward
         postponeEnterTransition()
         val listener = object : RequestListener<Drawable> {

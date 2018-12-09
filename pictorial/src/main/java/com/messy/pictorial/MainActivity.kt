@@ -52,8 +52,8 @@ class MainActivity : Activity<ReadingViewModel>() {
                 )
                 text(R.id.text, spannableString)
                 load(R.id.image, reading.imageUrl, null, transitionOptions)
-                transition(R.id.image, reading.id)
-                transition(R.id.text, reading.id + "text")
+                transition(R.id.image, reading.readingId)
+                transition(R.id.text, reading.readingId + "text")
             }
         }
         adapter.setOnItemClickListener { view, position ->
@@ -71,7 +71,7 @@ class MainActivity : Activity<ReadingViewModel>() {
         }
         adapter.enablePreLoad(recyclerView, 3)
         adapter.setOnPreLoadListener {
-            viewModel.nextPage(adapter.data[adapter.data.size - 1].id)
+            viewModel.nextPage(adapter.data[adapter.data.size - 1].readingId)
         }
         recyclerView.adapter = adapter
         recyclerView.setItemAnimation(R.anim.read_item_enter, 0.15f, DecelerateInterpolator())

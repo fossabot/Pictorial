@@ -20,11 +20,12 @@ class ReadingModel {
     }
 
     fun find(id: String): Reading? {
-        return LitePal.where("id = ?", id).find(Reading::class.java, true)[0]
+        val results = LitePal.where("readingId = ?", id).find(Reading::class.java, true)
+        return if (results.size >= 1) results[0] else null
     }
 
     fun findNext(id: String): Reading? {
-        return LitePal.where("id > ? limit 1", id).find(Reading::class.java, true)[0]
+        return LitePal.where("readingId > ? limit 1", id).find(Reading::class.java, true)[0]
     }
 
     fun findAll(): List<Reading> {
