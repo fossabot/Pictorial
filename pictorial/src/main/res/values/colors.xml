@@ -5,7 +5,7 @@
     <color name="colorAccent">#6d6b8f</color>
     <color name="colorAccentDark">#3c3b4e</color>
     <color name="colorWindowBackground">#201f29</color>
-    <color name="colorTranslateStatusBar">#23000000</color>
+    <color name="colorTranslateStatusBar">#00000000</color>
     <color name="colorLockTextBackground">#14000000</color>
     <color name="colorLockText">#ffffff</color>
 </resources>
