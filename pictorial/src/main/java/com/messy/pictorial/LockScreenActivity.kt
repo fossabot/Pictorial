@@ -6,19 +6,28 @@ import android.text.style.BackgroundColorSpan
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.Observer
+import androidx.transition.TransitionManager
 import com.messy.pictorial.mvvm.Activity
 import com.messy.util.color
+import com.messy.util.inVisible
+import com.messy.util.visible
 import kotlinx.android.synthetic.main.activity_lock_screen.*
 
 
 class LockScreenActivity : Activity<ReadingViewModel>() {
 
+    private var isResume = false
     override fun getViewModelClass(): Class<ReadingViewModel> = ReadingViewModel::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lock_screen)
         applyOption()
+        dragView.dragRange = DragView.HORIZONTAL
+        dragView.setDragPositionCondition { view, left, top, dx, dy ->
+            left > 200
+        }
+        dragView.setDragEventListener { finish() }
         viewModel.getSingle().observe(this, Observer {
             image.load(it.imageUrl)
             contentTitle.text = it.title
@@ -31,12 +40,28 @@ class LockScreenActivity : Activity<ReadingViewModel>() {
                 SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             text.text = spannableString
+            startAnim()
         })
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         applyOption()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        isResume = true
+        startAnim()
+    }
+
+    private fun startAnim() {
+        if (isResume) {
+            lockScreen.inVisible()
+            TransitionManager.beginDelayedTransition(lockScreen)
+            lockScreen.visible()
+            isResume = false
+        }
     }
 
     private fun applyOption() {

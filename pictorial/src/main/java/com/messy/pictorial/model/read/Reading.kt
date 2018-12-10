@@ -18,8 +18,7 @@ data class Reading(
     @SerializedName("tag_list")
     val tagList: List<Tag> = listOf(),
     @SerializedName("id")
-
-    val id: String = "",
+    val readingId: String = "",
     @SerializedName("last_update_date")
     val lastUpdateDate: String = "",
     @SerializedName("like_count")

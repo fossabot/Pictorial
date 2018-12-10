@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.DecelerateInterpolator
-import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
@@ -53,26 +52,26 @@ class MainActivity : Activity<ReadingViewModel>() {
                 )
                 text(R.id.text, spannableString)
                 load(R.id.image, reading.imageUrl, null, transitionOptions)
-                transition(R.id.image, reading.id)
-                transition(R.id.text, reading.id + "text")
+                transition(R.id.image, reading.readingId)
+                transition(R.id.text, reading.readingId + "text")
             }
         }
         adapter.setOnItemClickListener { view, position ->
             val intent = Intent(this, PreviewActivity::class.java)
-            val imageView = view.findViewById<ImageView>(R.id.image)
-            val textView = view.findViewById<ImageView>(R.id.text)
-            //
-            val pair2 = Pair(imageView, imageView.transitionName)
+            val imageView = view.findViewById<View>(R.id.image)
+            val textView = view.findViewById<View>(R.id.text)
             val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
-                Pair(textView, textView.transitionName)
+                Pair(imageView, imageView.transitionName),
+                Pair(textView, textView.transitionName),
+                Pair(view, "unused")
             ).toBundle()!!
             intent.putExtra("reading", adapter.data[position])
             startActivity(intent, bundle)
         }
         adapter.enablePreLoad(recyclerView, 3)
         adapter.setOnPreLoadListener {
-            viewModel.nextPage(adapter.data[adapter.data.size - 1].id)
+            viewModel.nextPage(adapter.data[adapter.data.size - 1].readingId)
         }
         recyclerView.adapter = adapter
         recyclerView.setItemAnimation(R.anim.read_item_enter, 0.15f, DecelerateInterpolator())

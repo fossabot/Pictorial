@@ -6,7 +6,7 @@ import com.messy.pictorial.model.read.Reading
 class ReadingCallback(private val old: List<Reading>, private val new: List<Reading>) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return old[oldItemPosition].id == new[newItemPosition].id
+        return old[oldItemPosition].readingId == new[newItemPosition].readingId
     }
 
     override fun getOldListSize(): Int {

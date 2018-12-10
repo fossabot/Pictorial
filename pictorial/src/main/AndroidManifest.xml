@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +33,7 @@
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
-            android:taskAffinity="com.messy.pictorial.lockscreen"
+            android:taskAffinity="com.messy.pictorial.locker"
             android:theme="@style/AppTheme.LockScreen" />
 
         <service
@@ -57,16 +59,32 @@
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/AppTheme.Settings" />
+
         <activity
             android:name=".PreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_preview"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/PreviewTheme">
+            android:theme="@style/AppTheme.Preview">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.messy.pictorial.MainActivity" />
         </activity>
+
+        <receiver android:name=".Toggle">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/toggle_info" />
+        </receiver>
+
+        <activity
+            android:name=".QuickToggleShortcut"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

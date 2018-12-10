@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="kitty" />
-    <version value="4" />
+    <version value="5" />
     <list>
         <mapping class="com.messy.pictorial.model.read.Author" />
         <mapping class="com.messy.pictorial.model.read.Reading" />

@@ -25,12 +25,14 @@ class ReadingRepository {
 
     fun readSingle(): LiveData<Reading> {
         val single = MediatorLiveData<Reading>()
+        single.postValue(readingModel.findAll()[11])
+        return single
         val cur = Config.currentItem
         if (TextUtils.isEmpty(cur)) {
             val more = readMore()
             single.addSource(more) {
-                Config.currentItem = it[0].id
-                Config.lastItem = it[0].id
+                Config.currentItem = it[0].readingId
+                Config.lastItem = it[0].readingId
                 single.postValue(it[0])
                 single.removeSource(more)
             }
@@ -40,7 +42,7 @@ class ReadingRepository {
                     val next = readingModel.findNext(Config.currentItem)
                     if (next != null) {
                         Config.lastItem = Config.currentItem
-                        Config.currentItem = next.id
+                        Config.currentItem = next.readingId
                         single.postValue(next)
                     }
                 } else {

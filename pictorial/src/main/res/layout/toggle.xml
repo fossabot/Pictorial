@@ -1,0 +1,10 @@
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toggle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/toggleMargin"
+    android:background="@drawable/toggle_background"
+    android:contentDescription="@string/app_name"
+    android:padding="@dimen/togglePadding"
+    android:src="@drawable/ic_toggle" />

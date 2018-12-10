@@ -2,20 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lockScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="invisible"
     tools:context="com.messy.pictorial.LockScreenActivity">
 
-    <ImageView
-        android:id="@+id/image"
+    <com.messy.pictorial.DragView
+        android:id="@+id/dragView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+    </com.messy.pictorial.DragView>
+
 
     <TextView
         android:id="@+id/text"
@@ -46,13 +55,11 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="@dimen/lockLinePadding"
+        android:layout_marginEnd="@dimen/lockPadding"
         android:maxLength="10"
         android:textColor="@color/colorLockText"
         app:layout_constraintBaseline_toBaselineOf="@+id/contentTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/contentTitle"
         tools:text="TextView" />
 
     <View
