@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBottomMenuBackground"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--   <include layout="@layout/update_time_select" />-->
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding">
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:text="@string/positive_button_text"
+            android:textAllCaps="true"
+            android:textColor="@color/colorBottomMenuButton"
+            android:textSize="@dimen/middleTextSize"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="@string/negative_button_text"
+            android:textAllCaps="true"
+
+            android:textColor="@color/colorBottomMenuButton"
+            android:textSize="@dimen/middleTextSize"
+            android:textStyle="bold" />
+    </FrameLayout>
+</LinearLayout>

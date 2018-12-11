@@ -8,4 +8,6 @@
     <color name="colorTranslateStatusBar">#00000000</color>
     <color name="colorLockTextBackground">#14000000</color>
     <color name="colorLockText">#ffffff</color>
+    <color name="colorBottomMenuButton">#2e86d8</color>
+    <color name="colorBottomMenuBackground">#1c2733</color>
 </resources>

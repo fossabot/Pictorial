@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:checked="true"
+        android:tag="60"
+        android:text="1小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:tag="120"
+        android:text="2小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:tag="240"
+        android:text="4小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:tag="480"
+        android:text="8小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:tag="720"
+        android:text="12小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+    <RadioButton
+        style="@style/RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:tag="1440"
+        android:text="24小时" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+</RadioGroup>

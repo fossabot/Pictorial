@@ -51,9 +51,9 @@
     <style name="Line" parent="Base" />
 
     <style name="Line.Settings" parent="Widget.AppCompat.CompoundButton.Switch">
-        <item name="android:paddingLeft">@dimen/padding</item>
-        <item name="android:paddingRight">@dimen/padding</item>
-        <item name="android:layout_height">@dimen/lineHeight</item>
+        <item name="android:paddingLeft">@dimen/normalPadding</item>
+        <item name="android:paddingRight">@dimen/normalPadding</item>
+        <item name="android:layout_height">@dimen/itemHeight</item>
     </style>
 
     <style name="AppTheme.Preview" parent="Base">
@@ -64,5 +64,31 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomMenuAnim">
+        <!-- <item name="android:windowEnterAnimation">@anim/bottom_dialog_enter_anim</item>
+         <item name="android:windowExitAnimation">@anim/bottom_dialog_exit_anim</item>-->
+    </style>
+
+    <style name="BottomMenu" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:windowBackground">@color/transparent</item>-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--activity不变暗-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/BottomMenuAnim</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableEnd">@drawable/bottom_menu_button</item>
+        <item name="android:paddingEnd">@dimen/normalPadding</item>
+        <item name="android:paddingLeft">@dimen/normalPadding</item>
     </style>
 </resources>

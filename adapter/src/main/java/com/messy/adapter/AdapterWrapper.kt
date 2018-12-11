@@ -16,7 +16,7 @@ class AdapterWrapper<VH : RecyclerView.ViewHolder>(
     constructor(
         adapter: RecyclerView.Adapter<VH>,
         @Suppress("UNCHECKED_CAST")
-        clazz: Class<VH> = ViewHolder::class.java as Class<VH>
+        clazz: Class<VH>
     ) : this(adapter) {
         this.clazz = clazz
     }

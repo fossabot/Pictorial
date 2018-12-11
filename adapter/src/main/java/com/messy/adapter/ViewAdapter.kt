@@ -27,7 +27,7 @@ class ViewAdapter<T, VH : ViewHolder>(
 
     @Suppress("MemberVisibilityCanBePrivate")
     var wrapper: AdapterWrapper<VH>? = null
-    var isLoadMore = true
+    var canLoadMore = true
     var preLoadLimitSize = 1
 
     private var clazz: Class<VH>? = null
@@ -143,16 +143,16 @@ class ViewAdapter<T, VH : ViewHolder>(
             val totalItemCount = recyclerView.linearLayoutManager.itemCount
             logd(
                 "lastVisibleItemPosition=$lastVisibleItemPosition totalItemCount=$totalItemCount" +
-                        "preLoadLimitSize=$preLoadLimitSize isPreLoading=$isPreLoading isLoadMore=$isLoadMore"
+                        "preLoadLimitSize=$preLoadLimitSize isPreLoading=$isPreLoading canLoadMore=$canLoadMore"
             )
-            if (!isLoadMore) {
+            if (!canLoadMore) {
                 this@ViewAdapter.unregisterAdapterDataObserver(observer!!)
                 recyclerView.removeOnScrollListener(preLoadListener!!)
                 observer = null
                 preLoadListener = null
             }
 
-            if (lastVisibleItemPosition >= totalItemCount - preLoadLimitSize && !isPreLoading && dy > 0 && isLoadMore) {
+            if (lastVisibleItemPosition >= totalItemCount - preLoadLimitSize && !isPreLoading && dy > 0 && canLoadMore) {
                 isPreLoading = true
                 onPreLoad?.invoke()
             }

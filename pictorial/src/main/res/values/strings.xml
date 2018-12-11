@@ -14,4 +14,6 @@
     <string name="title_activity_preview">PreviewActivity</string>
     <string name="start_lock_service">正在启动锁屏服务</string>
     <string name="stop_lock_service">正在关闭锁屏服务</string>
+    <string name="positive_button_text">positive</string>
+    <string name="negative_button_text">negative</string>
 </resources>
