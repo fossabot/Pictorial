@@ -14,20 +14,19 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 
     <RadioButton
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:checked="true"
         android:tag="120"
         android:text="2小时" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 
     <RadioButton
@@ -39,7 +38,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 
     <RadioButton
@@ -51,7 +50,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 
     <RadioButton
@@ -63,7 +62,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 
     <RadioButton
@@ -75,6 +74,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@android:color/black" />
 </RadioGroup>

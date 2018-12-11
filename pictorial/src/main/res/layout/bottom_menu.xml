@@ -16,14 +16,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding">
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding">
 
         <Button
             android:id="@+id/positiveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/positive_button_text"
             android:textAllCaps="true"
             android:textColor="@color/colorBottomMenuButton"
@@ -35,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/negative_button_text"
             android:textAllCaps="true"
 

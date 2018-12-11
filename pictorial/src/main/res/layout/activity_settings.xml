@@ -22,8 +22,8 @@
         android:id="@+id/notifySwitch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding"
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding"
         android:text="@string/switch_foreground_service"
         android:textAppearance="@style/TextAppearance.Settings" />
 
@@ -31,16 +31,16 @@
         android:id="@+id/updateSwitch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding"
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding"
         android:text="@string/switch_update_task"
         android:textAppearance="@style/TextAppearance.Settings" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding">
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +62,8 @@
         android:id="@+id/lastUpdateTime"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding">
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,8 +84,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/normalPadding"
-        android:paddingRight="@dimen/normalPadding">
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding">
 
         <TextView
             android:layout_width="wrap_content"
