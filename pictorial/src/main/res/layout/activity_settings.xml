@@ -1,96 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.messy.pictorial.SettingsActivity">
 
     <View
         android:id="@+id/statusBarView"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="25dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusBarView"
         app:title="@string/settings" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/notifySwitch"
-        style="@style/Line.Settings"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding"
         android:text="@string/switch_foreground_service"
-        android:textAppearance="@style/TextAppearance.Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateSwitch" />
+        android:textAppearance="@style/TextAppearance.Settings" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/updateSwitch"
-        style="@style/Line.Settings"
         android:layout_width="match_parent"
-
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding"
         android:text="@string/switch_update_task"
-        android:textAppearance="@style/TextAppearance.Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:checked="true" />
+        android:textAppearance="@style/TextAppearance.Settings" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:text="@string/time_limit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/buttonTextSize" />
+
+        <TextView
+            android:id="@+id/timeLimitRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="@string/time_limit" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/lastUpdateTime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:text="@string/last_update_time"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/buttonTextSize" />
+
+        <TextView
+            android:id="@+id/lastUpdateTimeRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="2小时" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:paddingLeft="@dimen/normalPadding"
+        android:paddingRight="@dimen/normalPadding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:text="@string/check_update"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/buttonTextSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="1.0.0-alpha" />
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/timeLimitLeft"
-        style="@style/Line.Settings"
-        android:layout_width="0dp"
-        android:gravity="center_vertical"
-        android:text="@string/time_limit"
-        android:textAppearance="@style/TextAppearance.Settings"
-        app:layout_constraintEnd_toStartOf="@+id/timeLimitRight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifySwitch" />
-
-    <TextView
-        android:id="@+id/timeLimitRight"
-        style="@style/Line.Settings"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.Settings"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/timeLimitLeft"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifySwitch"
-        tools:text="2小时" />
-
-    <TextView
-        android:id="@+id/lastUpdateTimeLeft"
-        style="@style/Line.Settings"
-        android:layout_width="0dp"
-        android:gravity="center_vertical"
-        android:text="@string/last_update_time"
-        android:textAppearance="@style/TextAppearance.Settings"
-        app:layout_constraintEnd_toStartOf="@+id/lastUpdateTimeRight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeLimitLeft" />
-
-    <TextView
-        android:id="@+id/lastUpdateTimeRight"
-        style="@style/Line.Settings"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.Settings"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/lastUpdateTimeLeft"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeLimitRight"
-        tools:text="9:14" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|bottom"
+        android:paddingBottom="@dimen/itemHeight"
+        android:text="@string/the_story" />
+</LinearLayout>

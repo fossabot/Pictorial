@@ -67,17 +67,17 @@
     </style>
 
     <style name="BottomMenuAnim">
-        <!-- <item name="android:windowEnterAnimation">@anim/bottom_dialog_enter_anim</item>
-         <item name="android:windowExitAnimation">@anim/bottom_dialog_exit_anim</item>-->
+        <item name="android:windowEnterAnimation">@anim/bottom_menu_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_menu_exit</item>
     </style>
 
     <style name="BottomMenu" parent="Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <!-- <item name="android:windowBackground">@color/transparent</item>-->
-        <item name="android:windowIsFloating">true</item>
+        <!--<item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowContentOverlay">@null</item>-->
         <!--activity不变暗-->
         <!--<item name="android:backgroundDimEnabled">false</item>-->
         <item name="android:windowFullscreen">true</item>

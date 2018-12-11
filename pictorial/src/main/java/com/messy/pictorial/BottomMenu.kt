@@ -13,6 +13,10 @@ class BottomMenu {
 
     private val bottomDialogFragment = BottomDialogFragment()
 
+    fun isShowing(): Boolean {
+        return bottomDialogFragment.dialog?.isShowing ?: false
+    }
+
     fun show(fm: FragmentManager, tag: String? = null) {
         bottomDialogFragment.show(fm, tag)
     }
@@ -44,6 +48,11 @@ class BottomMenu {
             dialog.window!!.setGravity(Gravity.BOTTOM)
         }
 
+        override fun onDestroyView() {
+            super.onDestroyView()
+            customView = null
+        }
+
         fun setCustomView(view: View) {
             customView = view
         }
@@ -54,16 +63,32 @@ class BottomMenu {
             positiveButton.setOnClickListener(onClick)
         }
 
+        fun setPositiveText(text: String) {
+            val positiveButton = view?.findViewById<Button>(R.id.positiveButton) ?: return
+            positiveButton.text = text
+        }
+
         fun setNegativeButton(text: String?, onClick: (View) -> Unit) {
             val negativeButton = view?.findViewById<Button>(R.id.positiveButton) ?: return
             negativeButton.text = text ?: string(R.string.negative_button_text)
             negativeButton.setOnClickListener(onClick)
         }
 
+        fun setNegativeText(text: String) {
+            val negativeButton = view?.findViewById<Button>(R.id.positiveButton) ?: return
+            negativeButton.text = text
+        }
     }
 
-    class Builder() {
+    @Suppress("MemberVisibilityCanBePrivate")
+    class Builder {
         private val bottomMenu = BottomMenu()
+        private var isSetPositiveButton = false
+        private var isSetNegativeButton = false
+        private var positiveText: String? = null
+        private var negativeText: String? = null
+        private var positiveClick: ((View) -> Unit)? = null
+        private var negativeClick: ((View) -> Unit)? = null
         fun setCustomView(view: View): Builder {
             bottomMenu.bottomDialogFragment.setCustomView(view)
             return this
@@ -71,16 +96,57 @@ class BottomMenu {
 
         fun setPositiveButton(text: String?, onClick: (View) -> Unit): Builder {
             bottomMenu.bottomDialogFragment.setPositiveButton(text, onClick)
+            isSetPositiveButton = true
             return this
         }
+
+        fun setPositiveButton(onClick: (View) -> Unit): Builder {
+            positiveClick = onClick
+            isSetPositiveButton = true
+            return this
+        }
+
+        fun setPositiveText(text: String): Builder {
+            positiveText = text
+            return this
+        }
+
 
         fun setNegativeButton(text: String?, onClick: (View) -> Unit): Builder {
             bottomMenu.bottomDialogFragment.setNegativeButton(text, onClick)
+            isSetNegativeButton = true
             return this
         }
 
-        fun build(): Builder {
+        fun setNegativeButton(onClick: (View) -> Unit): Builder {
+            negativeClick = onClick
+            isSetNegativeButton = true
             return this
+        }
+
+        fun setNegativeText(text: String): Builder {
+            negativeText = text
+            return this
+        }
+
+        fun build(): BottomMenu {
+            if (!isSetPositiveButton) {
+                setPositiveButton {
+                    if (bottomMenu.isShowing())
+                        bottomMenu.dismiss()
+                }
+            }
+            if (negativeText != null)
+                bottomMenu.bottomDialogFragment.setNegativeText(negativeText!!)
+            if (!isSetNegativeButton) {
+                setNegativeButton {
+                    if (bottomMenu.isShowing())
+                        bottomMenu.dismiss()
+                }
+            }
+            if (positiveText != null)
+                bottomMenu.bottomDialogFragment.setPositiveText(positiveText!!)
+            return bottomMenu
         }
     }
 }

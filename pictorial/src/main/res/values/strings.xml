@@ -16,4 +16,6 @@
     <string name="stop_lock_service">正在关闭锁屏服务</string>
     <string name="positive_button_text">positive</string>
     <string name="negative_button_text">negative</string>
+    <string name="check_update">检查更新</string>
+    <string name="the_story">你一生的故事\n1.0.0-alpha</string>
 </resources>

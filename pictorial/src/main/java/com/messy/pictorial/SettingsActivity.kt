@@ -3,9 +3,7 @@ package com.messy.pictorial
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
-import com.jeremyliao.livedatabus.LiveDataBus
+import com.messy.util.inflate
 import com.messy.util.setHeight
 import com.messy.util.statusBarHeight
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -29,10 +27,11 @@ class SettingsActivity : AppCompatActivity() {
                 LockService.startLockService(applicationContext)
             }
         }
-        Snackbar.make(toolbar, "init finished", Snackbar.LENGTH_SHORT).show()
-        LiveDataBus.get().with("all", String::class.java).observe(this, Observer {
-            Snackbar.make(toolbar, it, Snackbar.LENGTH_SHORT).show()
-        })
+        lastUpdateTime.setOnClickListener {
+            val bottomMenu: BottomMenu =
+                BottomMenu.Builder().setCustomView(inflate(R.layout.update_time_select)).build()
+            bottomMenu.show(supportFragmentManager, null)
+        }
     }
 
     private fun setTranslateBar() {
