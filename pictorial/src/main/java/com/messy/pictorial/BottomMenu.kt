@@ -26,7 +26,7 @@ class BottomMenu private constructor() {
     }
 
     @SuppressLint("ValidFragment")
-    private class BottomDialogFragment : DialogFragment() {
+    class BottomDialogFragment : DialogFragment() {
         private var customView: View? = null
         private var positiveText: String? = null
         private var negativeText: String? = null
