@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBottomMenuBackground"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <FrameLayout
@@ -16,32 +16,37 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
-        android:paddingLeft="@dimen/padding"
-        android:paddingRight="@dimen/padding">
-
-        <Button
-            android:id="@+id/positiveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/positive_button_text"
-            android:textAllCaps="true"
-            android:textColor="@color/colorBottomMenuButton"
-            android:textSize="@dimen/middleTextSize"
-            android:textStyle="bold" />
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
 
         <Button
             android:id="@+id/negativeButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:background="?android:attr/selectableItemBackground"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
             android:text="@string/negative_button_text"
             android:textAllCaps="true"
-
-            android:textColor="@color/colorBottomMenuButton"
+            android:textColor="@color/colorButtonText"
             android:textSize="@dimen/middleTextSize"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:text="@string/positive_button_text"
+            android:textAllCaps="true"
+            android:textColor="@color/colorButtonText"
+            android:textSize="@dimen/middleTextSize"
+            android:textStyle="bold" />
+
+
     </FrameLayout>
 </LinearLayout>

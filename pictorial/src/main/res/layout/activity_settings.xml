@@ -22,6 +22,8 @@
         android:id="@+id/notifySwitch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:paddingLeft="@dimen/padding"
         android:paddingRight="@dimen/padding"
         android:text="@string/switch_foreground_service"
@@ -31,14 +33,19 @@
         android:id="@+id/updateSwitch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:paddingLeft="@dimen/padding"
         android:paddingRight="@dimen/padding"
         android:text="@string/switch_update_task"
         android:textAppearance="@style/TextAppearance.Settings" />
 
     <FrameLayout
+        android:id="@+id/updateTime"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:paddingLeft="@dimen/padding"
         android:paddingRight="@dimen/padding">
 
@@ -47,21 +54,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:text="@string/time_limit"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/buttonTextSize" />
+            android:textAppearance="@style/TextAppearance.Settings" />
 
         <TextView
-            android:id="@+id/timeLimitRight"
+            android:id="@+id/updateTimeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:text="@string/time_limit" />
+            tools:text="@string/time_unit_hour" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/lastUpdateTime"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:paddingLeft="@dimen/padding"
         android:paddingRight="@dimen/padding">
 
@@ -70,20 +78,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:text="@string/last_update_time"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/buttonTextSize" />
+            android:textAppearance="@style/TextAppearance.Settings" />
 
         <TextView
             android:id="@+id/lastUpdateTimeRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:text="2小时" />
+            tools:text="12:00" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:paddingLeft="@dimen/padding"
         android:paddingRight="@dimen/padding">
 
@@ -92,8 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
             android:text="@string/check_update"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/buttonTextSize" />
+            android:textAppearance="@style/TextAppearance.Settings" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,9 +111,21 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/userGuide"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding"
+        android:text="@string/user_guide"
+        android:textAppearance="@style/TextAppearance.Settings" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
         android:paddingBottom="@dimen/itemHeight"
-        android:text="@string/the_story" />
+        android:text="@string/the_story_of_your_life" />
 </LinearLayout>

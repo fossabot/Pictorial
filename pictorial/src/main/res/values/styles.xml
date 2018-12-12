@@ -11,6 +11,18 @@
         <item name="buttonStyle">@style/Button</item>
     </style>
 
+    <style name="BaseAnim" parent="@android:style/Animation.Translucent">
+        <!--新Activity进入动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/right_to_left_enter</item>
+        <!--旧Activity退出动画-->
+        <item name="android:activityOpenExitAnimation">@anim/right_to_left_exit</item>
+        <!--旧Activity进入动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/left_to_right_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/left_to_right_exit</item>
+        <!--<item name="android:windowEnterAnimation">@anim/right_to_left_enter</item>
+        <item name="android:windowExitAnimation">@anim/left_to_right_enter</item>-->
+    </style>
+
     <style name="Button">
 
     </style>
@@ -22,10 +34,16 @@
     <style name="AppTheme" parent="Base">
         <item name="android:windowBackground">@color/colorWindowBackground</item>
         <item name="android:windowTranslucentStatus">false</item>
+        <!-- <item name="android:windowAnimationStyle">@style/MainAnim</item>-->
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+
+    <!--<style name="MainAnim" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/no_anim</item>
+        <item name="android:windowExitAnimation">@anim/main_exit</item>
+    </style>-->
 
     <style name="AppTheme.LockScreen" parent="Base">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -40,17 +58,37 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="WelcomeAnim">
+        <!--&lt;!&ndash;新Activity进入动画&ndash;&gt;
+        <item name="android:activityOpenEnterAnimation">@anim/translate_enter</item>
+        &lt;!&ndash;旧Activity退出动画&ndash;&gt;
+        <item name="android:activityOpenExitAnimation">@null</item>
+        &lt;!&ndash;旧Activity进入动画&ndash;&gt;
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/translate_exit</item>-->
+        <item name="android:windowEnterAnimation">@anim/translate_enter</item>
+        <item name="android:windowExitAnimation">@anim/translate_exit</item>
+    </style>
+
+    <style name="AppTheme.Welcome" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@style/WelcomeAnim</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="TextAppearance" />
 
     <style name="TextAppearance.Settings">
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">16sp</item>
     </style>
 
 
     <style name="Line" parent="Base" />
 
-    <style name="Line.Settings" parent="Widget.AppCompat.CompoundButton.Switch">
+    <style name="Line.Settings" parent="Widget.AppCompat.ButtonBar">
         <item name="android:paddingLeft">@dimen/padding</item>
         <item name="android:paddingRight">@dimen/padding</item>
         <item name="android:layout_height">@dimen/itemHeight</item>

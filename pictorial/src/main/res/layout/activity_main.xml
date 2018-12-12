@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -23,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:background="@color/colorTranslateStatusBar"
+        android:background="@color/colorStatusBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,12 +40,13 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?android:actionBarSize"
-        android:background="@color/colorTranslateStatusBar"
+        android:background="@color/colorStatusBar"
         app:contentInsetStart="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statusBarView"
-        app:title=""
+        app:title="@string/app_name"
         app:titleTextColor="#fff" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

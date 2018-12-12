@@ -5,9 +5,8 @@
     <color name="colorAccent">#6d6b8f</color>
     <color name="colorAccentDark">#3c3b4e</color>
     <color name="colorWindowBackground">#201f29</color>
-    <color name="colorTranslateStatusBar">#00000000</color>
+    <color name="colorStatusBar">#00000000</color>
     <color name="colorLockTextBackground">#14000000</color>
     <color name="colorLockText">#ffffff</color>
-    <color name="colorBottomMenuButton">#2e86d8</color>
-    <color name="colorBottomMenuBackground">#1c2733</color>
+    <color name="colorButtonText">#2e86d8</color>
 </resources>

@@ -41,8 +41,8 @@ class LockPictorialNotification private constructor() {
     fun create(): Notification {
         createNotificationChannel()
         val notificationBuilder = NotificationCompat.Builder(application.applicationContext, CHANNEL_ID)
-        val contentTitle = application.applicationContext.string(R.string.channel_name)
-        val contentText = application.applicationContext.string(R.string.channel_desc)
+        val contentTitle = application.applicationContext.string(R.string.lock_notification_content_title)
+        val contentText = application.applicationContext.string(R.string.lock_notification_content_text)
         val pendingIntent = PendingIntent.getActivity(application, 0, Intent(application, MainActivity::class.java), 0)
         notificationBuilder
             .setSmallIcon(R.drawable.ic_launcher_foreground)

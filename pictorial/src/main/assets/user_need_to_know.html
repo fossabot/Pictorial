@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h2>关于权限</h2>
+    <h4>开机自启</h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了更好的服务于用户，我们选择用监听开机启动的广播来启动锁屏服务，而不是让用户手动去启动服务</p>
+    <a href="messy://welcome?type=check-boot">检查权限</a>
+    <h4>后台运行</h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了保证锁屏服务的正常运行，我们需要用户授予的后台运行权限，以保证可以正常显示锁屏画报</p>
+    <a href="messy://welcome?type=check-background-run">检查权限</a>
+    <h4>锁屏显示</h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于本产品旨在为用户创造碎片阅读的环境，所以选择通过锁屏显示，来向用户展示核心内容</p>
+    <a href="messy://welcome?type=check-lock-screen">检查权限</a>
+    <h4>网络请求</h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本产品数据均来源于网络，联网后方能正常使用</p>
+    <a href="messy://welcome?type=check-internet">检查权限</a>
+    <h4>读写SD卡</h4>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了优化体验，我们将会缓存一些数据于手机存储器中</p>
+    <a href="messy://welcome?type=check-storage">检查权限</a>
+</body>
+
+</html>

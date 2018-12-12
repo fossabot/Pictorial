@@ -18,11 +18,11 @@ class MMap<T>(val default: T) : ReadWriteProperty<Any?, T> {
         val name = property.name
         @Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
         return when (default) {
-            is Int -> mmkv.decodeInt(name)
-            is Long -> mmkv.decodeLong(name)
-            is String -> mmkv.decodeString(name)
-            is Boolean -> mmkv.decodeBool(name)
-            is Float -> mmkv.decodeFloat(name)
+            is Int -> mmkv.decodeInt(name, default)
+            is Long -> mmkv.decodeLong(name, default)
+            is String -> mmkv.decodeString(name, default)
+            is Boolean -> mmkv.decodeBool(name, default)
+            is Float -> mmkv.decodeFloat(name, default)
             else -> throw RuntimeException("Unsupported type.")
         } as T
     }

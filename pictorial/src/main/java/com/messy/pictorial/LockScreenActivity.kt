@@ -1,45 +1,56 @@
 package com.messy.pictorial
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.BackgroundColorSpan
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.transition.TransitionManager
 import com.messy.pictorial.mvvm.Activity
-import com.messy.util.color
+import com.messy.util.displayHeight
 import com.messy.util.inVisible
+import com.messy.util.string
 import com.messy.util.visible
 import kotlinx.android.synthetic.main.activity_lock_screen.*
 
 
-class LockScreenActivity : Activity<ReadingViewModel>() {
+class LockScreenActivity : Activity<StoryViewModel>() {
 
     private var isResume = false
-    override fun getViewModelClass(): Class<ReadingViewModel> = ReadingViewModel::class.java
+    private var isLoad = false
+    override fun getViewModelClass(): Class<StoryViewModel> = StoryViewModel::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lock_screen)
         applyOption()
-        dragView.dragRange = DragView.HORIZONTAL
-        dragView.setDragPositionCondition { view, left, top, dx, dy ->
-            left > 200
-        }
+        isLoad = false
+        isResume = false
+        dragView.dragDirection = DragView.RIGHT
+        dragView.dragLimitFactor = 0.15f
         dragView.setDragEventListener { finish() }
+        val height = displayHeight * 0.2f
+        dragView.setDragDistanceChangeListener {
+            val translationY = -it * height + height
+            text.translationY = translationY
+            contentTitle.translationY = translationY
+            info.translationY = translationY
+            time.translationY = translationY
+            line.translationY = translationY
+        }
         viewModel.getSingle().observe(this, Observer {
-            image.load(it.imageUrl)
+            image.load(it.imgUrl)
             contentTitle.text = it.title
             time.text = it.lastUpdateDate
-            val spannableString = SpannableString("\t\t\t\t" + it.forward)
-            spannableString.setSpan(
-                BackgroundColorSpan(color(R.color.colorLockTextBackground)),
-                0,
-                spannableString.length,
-                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            text.text = spannableString
+            text.text = it.forward
+            val inf = StringBuilder()
+            if (it.picInfo.isNotEmpty())
+                inf.append("@").append(string(R.string.pic_info, it.wordsInfo))
+            else if (it.author.userName.isNotEmpty())
+                inf.append("@").append(string(R.string.pic_info, it.author.userName))
+            if (it.wordsInfo.isNotEmpty())
+                inf.append(" ").append(string(R.string.word_info, it.wordsInfo))
+            info.text = inf.toString()
+            isLoad = true
             startAnim()
         })
     }
@@ -56,7 +67,7 @@ class LockScreenActivity : Activity<ReadingViewModel>() {
     }
 
     private fun startAnim() {
-        if (isResume) {
+        if (isResume && isLoad) {
             lockScreen.inVisible()
             TransitionManager.beginDelayedTransition(lockScreen)
             lockScreen.visible()

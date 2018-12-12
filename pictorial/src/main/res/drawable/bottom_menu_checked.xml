@@ -5,7 +5,7 @@
             android:shape="ring"
             android:thickness="2dp"
             android:useLevel="false">
-            <solid android:color="@color/colorBottomMenuButton" />
+            <solid android:color="@color/colorButtonText" />
             <size
                 android:width="@dimen/buttonSize"
                 android:height="@dimen/buttonSize" />
@@ -17,7 +17,7 @@
         android:right="7dp"
         android:top="7dp">
         <shape android:shape="oval">
-            <solid android:color="@color/colorBottomMenuButton" />
+            <solid android:color="@color/colorButtonText" />
         </shape>
     </item>
 </layer-list>

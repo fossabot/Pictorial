@@ -1,8 +1,10 @@
 package com.messy.pictorial.model.daydream
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import org.litepal.crud.LitePalSupport
-
+@Parcelize
 data class Author(
     @SerializedName("summary")
     val summary: String = "",
@@ -22,4 +24,4 @@ data class Author(
     val settledType: String = "",
     @SerializedName("desc")
     val desc: String = ""
-): LitePalSupport()
+): LitePalSupport(), Parcelable

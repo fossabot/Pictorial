@@ -1,21 +1,24 @@
 <resources>
     <string name="app_name">锁屏画报</string>
     <string name="ACTION_USER">com.messy.pictorial.ACTION_USER</string>
-    <string name="channel_name">正在运行</string>
-    <string name="channel_desc">诉说你一生的故事</string>
-    <string name="lock_notification_content_title">锁屏服务</string>
-    <string name="lock_notification_content_text">不浪费每一分钟。</string>
+    <string name="channel_name">锁屏服务</string>
+    <string name="channel_desc">锁屏画报前台前台通知</string>
+    <string name="lock_notification_content_title">图画故事</string>
+    <string name="lock_notification_content_text">诉说你一生的故事</string>
     <string name="settings">设置</string>
     <string name="switch_foreground_service">状态栏通知</string>
     <string name="switch_update_task">定时更新</string>
-    <string name="time_limit">更新间隔</string>
+    <string name="time_unit_hour">小时</string>
     <string name="last_update_time">上一次更新时间</string>
-
-    <string name="title_activity_preview">PreviewActivity</string>
+    <string name="title_activity_preview">预览</string>
     <string name="start_lock_service">正在启动锁屏服务</string>
     <string name="stop_lock_service">正在关闭锁屏服务</string>
-    <string name="positive_button_text">positive</string>
-    <string name="negative_button_text">negative</string>
+    <string name="pic_info">图:%s</string>
+    <string name="word_info">文:%s</string>
     <string name="check_update">检查更新</string>
-    <string name="the_story">你一生的故事\n1.0.0-alpha</string>
+    <string name="positive_button_text">确认</string>
+    <string name="negative_button_text">取消</string>
+    <string name="the_story_of_your_life">你一生的故事\n1.0.0-alpha</string>
+    <string name="user_guide">使用手册</string>
+    <string name="time_limit">更新间隔</string>
 </resources>

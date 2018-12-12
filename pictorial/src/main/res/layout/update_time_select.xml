@@ -2,12 +2,15 @@
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <RadioButton
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
 
         android:tag="60"
         android:text="1小时" />
@@ -21,6 +24,8 @@
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:tag="120"
         android:text="2小时" />
 
@@ -33,6 +38,8 @@
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:tag="240"
         android:text="4小时" />
 
@@ -45,6 +52,8 @@
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:tag="480"
         android:text="8小时" />
 
@@ -57,6 +66,8 @@
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:tag="720"
         android:text="12小时" />
 
@@ -69,6 +80,8 @@
         style="@style/RadioButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/itemHeight"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:tag="1440"
         android:text="24小时" />
 

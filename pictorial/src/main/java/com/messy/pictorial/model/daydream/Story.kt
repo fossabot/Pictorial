@@ -1,8 +1,11 @@
 package com.messy.pictorial.model.daydream
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import org.litepal.crud.LitePalSupport
 
+@Parcelize
 data class Story(
     @SerializedName("content_bgcolor")
     val contentBgcolor: String = "",
@@ -36,4 +39,4 @@ data class Story(
     val shareUrl: String = "",
     @SerializedName("subtitle")
     val subtitle: String = ""
-) : LitePalSupport()
+) : LitePalSupport(), Parcelable

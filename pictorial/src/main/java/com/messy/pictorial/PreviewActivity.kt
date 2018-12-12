@@ -15,11 +15,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.messy.pictorial.model.read.Reading
-import com.messy.util.displayHeight
-import com.messy.util.displayWidth
+import com.messy.pictorial.model.daydream.Story
 import kotlinx.android.synthetic.main.activity_preview.*
-import kotlin.math.min
 
 class PreviewActivity : AppCompatActivity() {
     companion object {
@@ -40,9 +37,10 @@ class PreviewActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
     private val showControls = Runnable {
-        TransitionManager.beginDelayedTransition(fullscreen_content_controls.parent as ViewGroup, fade)
-        fullscreen_content_controls.visibility = View.VISIBLE
+        TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
+        controls.visibility = View.VISIBLE
     }
+    private val hideRunnable = Runnable { /*hide()*/ }
     private var mVisible: Boolean = true
     private var isClearTransFlag: Boolean = false
 
@@ -51,17 +49,35 @@ class PreviewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_preview)
         mVisible = true
         photoView.minimumScale = 1f
-        photoView.maximumScale = 10f
+        photoView.maximumScale = 3.2f
         dragView.setDragFinishedCondition { _, xvel, yvel -> yvel > 3600 || xvel > 3600 }
         dragView.setDragEventListener { supportFinishAfterTransition() }
+        dragView.dragLimitFactor = 0.16f
+        dragView.setDragDistanceChangeListener {
+            controls.translationY = -it * controls.height + controls.height
+        }
         photoView.setOnClickListener { toggle() }
         photoView.minimumScale = 1f
-        val reading = intent!!.getParcelableExtra<Reading>("reading")
-        photoView.transitionName = reading.readingId
-        text.transitionName = reading.readingId + "text"
+        val reading = intent!!.getParcelableExtra<Story>("extra")
+        photoView.transitionName = reading.storyId
         text.text = reading.forward
         postponeEnterTransition()
-        val listener = object : RequestListener<Drawable> {
+        val listener = requestListener()
+        photoView.load(reading.imgUrl, listener = listener)
+        photoView.setOnScaleChangeListener { scaleFactor, focusX, focusY ->
+            Log.d("PREVIEW_A", "scale =$scaleFactor fx=$focusX fy=$focusY")
+        }
+        photoView.postDelayed(hideRunnable, AUTO_HIDE_UI_MILLIS)
+        photoView.postDelayed({
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.navigationBarColor = Color.TRANSPARENT
+            isClearTransFlag = true
+        }, AUTO_HIDE_UI_MILLIS + 500)
+        // photoView.
+    }
+
+    private fun requestListener(): RequestListener<Drawable> {
+        return object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
@@ -76,45 +92,11 @@ class PreviewActivity : AppCompatActivity() {
                 resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?,
                 isFirstResource: Boolean
             ): Boolean {
-                if (resource != null) {
-                    val intrinsicWidth = resource.intrinsicWidth
-                    val intrinsicHeight = resource.intrinsicHeight
-                    val width = displayWidth
-                    val height = displayHeight
-                    var scale = 1.0f
-                    //如果图片宽度大于控件宽度，图片高度小于控件高度  图片缩小
-                    if (intrinsicWidth > width && intrinsicHeight < height) {
-                        scale = intrinsicWidth * 1.0f / width
-                    }
-                    //如果图片的高度大于控件的高度，图片的宽度小于控件的宽度  图片缩小
-                    if (intrinsicHeight > height && intrinsicWidth < width) {
-                        scale = intrinsicHeight * 1.0f / height
-                    }
-                    //如果图片的宽与高都大于控件的宽与高 或者 图片的宽与高都小于控件的宽与高
-                    if ((intrinsicHeight > height && intrinsicWidth > width)) {
-                        scale = min(width * 1.0f / intrinsicWidth, height * 1.0f / intrinsicHeight)
-                    }
-                    if (intrinsicHeight < height && intrinsicWidth < width) {
-                        scale = min(width * 1.0f / intrinsicWidth, height * 1.0f / intrinsicHeight)
-                    }
-                    photoView.scale = scale
-                }
                 supportStartPostponedEnterTransition()
                 return false
             }
 
         }
-        photoView.load(reading.imageUrl, listener = listener)
-        photoView.setOnScaleChangeListener { scaleFactor, focusX, focusY ->
-            Log.d("PREVIEW_A", "scale =$scaleFactor fx=$focusX fy=$focusY")
-        }
-        photoView.postDelayed({ toggle() }, AUTO_HIDE_UI_MILLIS)
-        photoView.postDelayed({
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.navigationBarColor = Color.TRANSPARENT
-            isClearTransFlag = true
-        }, AUTO_HIDE_UI_MILLIS + 500)
-        // photoView.
     }
 
     override fun onBackPressed() {
@@ -135,14 +117,15 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun hide() {
-        TransitionManager.beginDelayedTransition(fullscreen_content_controls.parent as ViewGroup, fade)
-        fullscreen_content_controls.visibility = View.GONE
+        TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
+        controls.visibility = View.GONE
         mVisible = false
         mHideHandler.removeCallbacks(showControls)
         mHideHandler.postDelayed(hideControls, UI_ANIMATION_DELAY)
     }
 
     private fun show() {
+        mHideHandler.removeCallbacks(hideControls)
         if (!isClearTransFlag) {
             window.navigationBarColor = Color.TRANSPARENT
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
@@ -152,9 +135,9 @@ class PreviewActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         mVisible = true
-        mHideHandler.removeCallbacks(hideControls)
+        mHideHandler.removeCallbacks(hideRunnable)
         mHideHandler.postDelayed(showControls, UI_ANIMATION_DELAY)
-        mHideHandler.postDelayed({ hide() }, UI_ANIMATION_DELAY + AUTO_HIDE_UI_MILLIS)
+        mHideHandler.postDelayed(hideRunnable, UI_ANIMATION_DELAY + AUTO_HIDE_UI_MILLIS)
     }
 
 }

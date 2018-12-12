@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import com.messy.util.inflate
 import com.messy.util.string
 
-class BottomMenu {
+class BottomMenu private constructor() {
 
     private val bottomDialogFragment = BottomDialogFragment()
 
@@ -33,6 +33,8 @@ class BottomMenu {
         private lateinit var positiveClick: (View) -> Unit
         private lateinit var negativeClick: (View) -> Unit
 
+        var isNoFrame = false
+
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomMenu)
@@ -40,6 +42,9 @@ class BottomMenu {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            if (isNoFrame) {
+                return customView
+            }
             val bottomMenuView = inflate(R.layout.bottom_menu, container, false)
             if (customView != null)
                 bottomMenuView.findViewById<ViewGroup>(R.id.container).addView(customView)
@@ -84,13 +89,20 @@ class BottomMenu {
         }
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     class Builder {
         private val bottomMenu = BottomMenu()
         private var positiveText: String? = null
         private var negativeText: String? = null
         private var positiveClick: ((View) -> Unit)? = null
         private var negativeClick: ((View) -> Unit)? = null
+
+        private var isNoFrame: Boolean = false
+
+        fun setNoFrame(bool: Boolean): Builder {
+            isNoFrame = bool
+            return this
+        }
+
         fun setCustomView(view: View): Builder {
             bottomMenu.bottomDialogFragment.setCustomView(view)
             return this
@@ -139,6 +151,7 @@ class BottomMenu {
                 negativeClick = { bottomMenu.dismiss() }
             bottomMenu.bottomDialogFragment.setNegativeButton(negativeClick!!)
             bottomMenu.bottomDialogFragment.setNegativeText(negativeText)
+            bottomMenu.bottomDialogFragment.isNoFrame = isNoFrame
             return bottomMenu
         }
     }

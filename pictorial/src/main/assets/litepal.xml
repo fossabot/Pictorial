@@ -7,6 +7,8 @@
         <mapping class="com.messy.pictorial.model.read.Reading" />
         <mapping class="com.messy.pictorial.model.read.ShareInfo" />
         <mapping class="com.messy.pictorial.model.read.Tag" />
+        <mapping class="com.messy.pictorial.model.daydream.Author" />
+        <mapping class="com.messy.pictorial.model.daydream.Story" />
     </list>
 
 </litepal>

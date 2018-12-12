@@ -9,25 +9,17 @@ import android.view.animation.Interpolator
 import android.view.animation.LayoutAnimationController
 import android.view.animation.LinearInterpolator
 import android.widget.CompoundButton
-import android.widget.ImageView
 import android.widget.RadioGroup
 import androidx.annotation.AnimRes
 import androidx.annotation.Px
 import androidx.core.view.*
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 inline fun View.setHeight(height: Int) {
-    /*val layoutParams = this.layoutParams
-    layoutParams.height = height
-    this.layoutParams = layoutParams*/
     setSize(width, height)
 }
 
 inline fun View.setWidth(width: Int) {
-    /*val layoutParams = this.layoutParams
-    layoutParams.width = width
-    this.layoutParams = layoutParams*/
     setSize(width, height)
 }
 
@@ -115,10 +107,6 @@ inline val ViewGroup.first: View
 inline val ViewGroup.last: View
     get() = this.getChildAt(this.size - 1)
 
-/*fun ImageView.clear() {
-    Glide.with(this).clear(this)
-}*/
-
 val RadioGroup.checkedIndex: Int?
     get() {
         forEachIndexed { index, v -> takeIf { v.id == checkedRadioButtonId }?.apply { return index } }
@@ -141,18 +129,9 @@ fun RecyclerView.setItemAnimation(
 inline fun View?.removeInParent() {
     (this?.parent as? ViewGroup)?.removeView(this)
 }
-/*
 
-inline fun Toolbar.fitsSystemWindows() {
-    setMarginTop(context!!.statusBarHeight)
+inline fun ViewGroup.foreach(block: (View) -> Unit) {
+    for (i in 0 until childCount) {
+        block(get(i))
+    }
 }
-
-inline fun androidx.appcompat.widget.Toolbar.fitsSystemWindows() {
-    //setMarginTop(context!!.statusBarHeight)
-    val attrsArray = intArrayOf(android.R.attr.actionBarSize)
-    val tv = context.obtainStyledAttributes(attrsArray)
-    val actionBarSize = tv.getDimensionPixelSize(0, height)
-    tv.recycle()
-    setHeight(paddingTop + actionBarSize + context.statusBarHeight)
-
-}*/

@@ -37,7 +37,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="TextView" />
+        tools:text="我会装醉，是因为清醒的时候就会一直喜欢你" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/contentTitle"
+        app:layout_constraintEnd_toStartOf="@+id/time"
+        app:layout_constraintStart_toEndOf="@+id/contentTitle"
+        tools:ignore="SmallSp"
+        tools:text="@图：羊芳涛 文：《横道世之介》" />
 
     <TextView
         android:id="@+id/contentTitle"
@@ -49,7 +62,7 @@
         android:textSize="@dimen/middleTextSize"
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="TextView" />
+        tools:text="主题" />
 
     <TextView
         android:id="@+id/time"
@@ -60,12 +73,12 @@
         android:textColor="@color/colorLockText"
         app:layout_constraintBaseline_toBaselineOf="@+id/contentTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="TextView" />
+        tools:text="2018-12-07" />
 
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_marginStart="@dimen/lockPadding"
         android:layout_marginEnd="@dimen/lockPadding"
         android:layout_marginBottom="@dimen/smallPadding"

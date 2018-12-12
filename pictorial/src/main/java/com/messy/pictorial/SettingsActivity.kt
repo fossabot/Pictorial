@@ -1,11 +1,13 @@
 package com.messy.pictorial
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.messy.util.inflate
-import com.messy.util.setHeight
-import com.messy.util.statusBarHeight
+import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -17,7 +19,8 @@ class SettingsActivity : AppCompatActivity() {
         updateSwitch.isChecked = Settings.getInstance().isEnableUpdate
         notifySwitch.isChecked = Settings.getInstance().isForegroundService
         lastUpdateTimeRight.text = Config.lastUpdateTime
-
+        updateTimeText.text = Config.updateTimeText
+        updateTimeText.tag = Config.updateTime
         updateSwitch.setOnCheckedChangeListener { _, isChecked -> Settings.getInstance().isEnableUpdate = isChecked }
         notifySwitch.setOnCheckedChangeListener { _, isChecked ->
             Settings.getInstance().isForegroundService = isChecked
@@ -27,11 +30,27 @@ class SettingsActivity : AppCompatActivity() {
                 LockService.startLockService(applicationContext)
             }
         }
-        lastUpdateTime.setOnClickListener {
-            val bottomMenu: BottomMenu =
-                BottomMenu.Builder().setCustomView(inflate(R.layout.update_time_select)).build()
-            bottomMenu.show(supportFragmentManager, null)
+        updateTime.setOnClickListener { selectUpdateTime() }
+        userGuide.setOnClickListener { startActivity(Intent(this, Welcome::class.java)) }
+    }
+
+    private fun selectUpdateTime() {
+        val customView = inflate(R.layout.update_time_select)
+        val bottomMenu: BottomMenu = BottomMenu.Builder().setCustomView(customView).setNoFrame(true).build()
+        (customView as ViewGroup).foreach {
+            if (it is RadioButton && it.text == updateTimeText.text) {
+                it.checked()
+            }
         }
+        (customView as RadioGroup).setOnCheckedChangeListener { group, checkedId ->
+            val checkedButton = group[group.checkedIndex ?: 1] as RadioButton
+            updateTimeText.text = checkedButton.text
+            updateTimeText.tag = (checkedButton.tag as String).toInt()
+            Config.updateTimeText = checkedButton.text as String
+            Config.updateTime = (checkedButton.tag as String).toInt()
+            bottomMenu.dismiss()
+        }
+        bottomMenu.show(supportFragmentManager, null)
     }
 
     private fun setTranslateBar() {

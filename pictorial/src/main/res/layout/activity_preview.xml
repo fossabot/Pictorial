@@ -18,11 +18,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            tools:src="#fff" />
+            tools:src="#393535" />
     </com.messy.pictorial.DragView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fullscreen_content_controls"
+        android:id="@+id/controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

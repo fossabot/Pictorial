@@ -20,11 +20,11 @@ class StoryModel {
         }
 
         fun find(id: String): Story? {
-            return LitePal.where("id = ?", id).find(Story::class.java, true)[0]
+            return LitePal.where("storyId = ?", id).find(Story::class.java, true)[0]
         }
 
         fun findNext(id: String): Story? {
-            return LitePal.where("id > ? limit 1", id).find(Story::class.java, true)[0]
+            return LitePal.where("storyId > ? limit 1", id).find(Story::class.java, true)[0]
         }
 
         fun findAll(): List<Story> {

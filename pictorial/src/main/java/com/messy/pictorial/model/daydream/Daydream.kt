@@ -7,7 +7,7 @@ data class Daydream(
     @SerializedName("date")
     val date: String = "",
     @SerializedName("content_list")
-    val contentList: List<Daydream>,
+    val contentList: List<Story>,
     @SerializedName("weather")
     val weather: Weather,
     @SerializedName("id")
