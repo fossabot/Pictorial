@@ -24,7 +24,7 @@ import java.io.FileOutputStream
 interface OneDrive {
 
     companion object {
-        private const val BASE_URL = "https://github.com/microtears/Pictorial/blob/master/"
+        const val BASE_URL = "https://github.com/microtears/Pictorial/blob/master/"
         fun create() = NetworkClient.getInstance().create(BASE_URL, OneDrive::class.java)
     }
 

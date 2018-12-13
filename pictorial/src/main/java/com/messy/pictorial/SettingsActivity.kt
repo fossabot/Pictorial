@@ -1,11 +1,13 @@
 package com.messy.pictorial
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.messy.util.*
@@ -36,9 +38,39 @@ class SettingsActivity : AppCompatActivity() {
         versionName.text = getApkInfoLocal(this).versionName
         checkUpdateButton.setOnClickListener {
             val popupWindow = wait()
-            /*checkUpdate(this).observe(this, Observer {
-
-            })*/
+            checkUpdate(this).observe(this, Observer { pair ->
+                popupWindow.dismiss()
+                if (!pair.first) {
+                    val dialog = AlertDialog.Builder(this, R.style.Dialog)
+                        .setTitle(string(R.string.check_update))
+                        .setMessage(string(R.string.can_update))
+                        .setPositiveButton(string(R.string.confirm)) { dialog, which ->
+                            dialog.cancel()
+                            val progressDialog = ProgressDialog(this, R.style.Dialog)
+                            progressDialog.setTitle(string(R.string.update_now))
+                            progressDialog.progress = 0
+                            progressDialog.max = 100
+                            progressDialog.show()
+                            getApkRemote(applicationContext, pair.second.outputFile).observe(this, Observer { result ->
+                                if (result.status) {
+                                    if (result.progress == 100)
+                                        progressDialog.cancel()
+                                    progressDialog.progress = result.progress
+                                } else {
+                                    showTip(string(R.string.download_wrong))
+                                    progressDialog.cancel()
+                                }
+                            })
+                        }
+                        .setNegativeButton(string(R.string.cancel)) { dialog, which ->
+                            dialog.cancel()
+                        }
+                        .create()
+                    dialog.show()
+                } else {
+                    showTip(string(R.string.cannot_update))
+                }
+            })
 
         }
     }

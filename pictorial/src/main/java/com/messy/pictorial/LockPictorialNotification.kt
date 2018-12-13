@@ -12,6 +12,7 @@ class LockPictorialNotification private constructor() {
         const val LOCK_PIC_NOTIFICATION_ID = 31
         private const val CHANNEL_ID = "com.messy.pictorial.notification.channel"
         private lateinit var application: Application
+        private var isCreatedChannel = false
         fun init(app: Application) {
             application = app
         }
@@ -27,6 +28,8 @@ class LockPictorialNotification private constructor() {
     }
 
     private fun createNotificationChannel() {
+        if (isCreatedChannel)
+            return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelName = application.applicationContext.string(R.string.channel_name)
             val description = application.applicationContext.string(R.string.channel_desc)
@@ -35,6 +38,7 @@ class LockPictorialNotification private constructor() {
             channel.description = description
             val notificationManager = application.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+            isCreatedChannel = true
         }
     }
 

@@ -111,7 +111,7 @@ class DragView : FrameLayout {
             val a = sqrt(((top - origin.y) * (top - origin.y) + (left - origin.x) * (left - origin.x)).toFloat())
             val b =
                 sqrt(((measuredHeight - origin.y) * (measuredHeight - origin.y) + (measuredHeight - origin.x) * (measuredHeight - origin.x)).toFloat())
-            val factor = 1 - a / (b * 0.8f)
+            val factor = 1 - a / b
             if (background != null)
                 background.alpha = (255 * factor).toInt()
             if (dragDirection == ALL) {

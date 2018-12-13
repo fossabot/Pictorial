@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">锁屏画报</string>
+    <string name="app_name">图画故事</string>
     <string name="ACTION_USER">com.messy.pictorial.ACTION_USER</string>
     <string name="channel_name">锁屏服务</string>
-    <string name="channel_desc">锁屏画报前台前台通知</string>
-    <string name="lock_notification_content_title">图画故事</string>
-    <string name="lock_notification_content_text">诉说你一生的故事</string>
+    <string name="channel_desc">锁屏服务前台前台通知</string>
+    <string name="lock_notification_content_title">图说你一生的故事</string>
+    <string name="lock_notification_content_text">我爱你，我想这世界许多事早已注定，像江河不可平，像走进你人生中的路，遥遥不可期</string>
     <string name="settings">设置</string>
     <string name="switch_foreground_service">状态栏通知</string>
     <string name="switch_update_task">定时更新</string>
@@ -18,7 +18,15 @@
     <string name="check_update">检查更新</string>
     <string name="positive_button_text">确认</string>
     <string name="negative_button_text">取消</string>
-    <string name="the_story_of_your_life">你一生的故事\n1.0.0-alpha</string>
+    <!--你一生的故事\n-->
+    <string name="the_story_of_your_life">来自未来研究所</string>
     <string name="user_guide">使用手册</string>
     <string name="time_limit">更新间隔</string>
+    <string name="can_update">是否立即更新？</string>
+    <string name="cannot_update">已是最新版本</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="update_now">正在更新</string>
+    <string name="update_progress">当前更新</string>
+    <string name="download_wrong">下载出错</string>
 </resources>

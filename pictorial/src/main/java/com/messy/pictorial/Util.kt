@@ -3,6 +3,7 @@
 package com.messy.pictorial
 
 import android.app.Activity
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.Gravity
 import android.view.ViewGroup
@@ -47,9 +48,11 @@ fun ViewHolder.load(
 fun Activity.wait(): PopupWindow {
     val popupWindow = PopupWindow(this)
     popupWindow.apply {
-        contentView = inflate(R.layout.wait, window.decorView as ViewGroup, false)
-        width = ViewGroup.LayoutParams.WRAP_CONTENT
-        height = ViewGroup.LayoutParams.WRAP_CONTENT
+        contentView = inflate(R.layout.wait/*, window.decorView as ViewGroup, false*/)
+        width = ViewGroup.LayoutParams.MATCH_PARENT
+        height = ViewGroup.LayoutParams.MATCH_PARENT
+        isClippingEnabled = false
+        setBackgroundDrawable(ColorDrawable(0))
     }
     popupWindow.showAtLocation(window.decorView, Gravity.CENTER, 0, 0)
     return popupWindow
