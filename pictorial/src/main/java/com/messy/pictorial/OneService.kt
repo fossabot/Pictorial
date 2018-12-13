@@ -12,7 +12,7 @@ interface OneService {
 
     companion object {
         private const val BASE_URL = "http://v3.wufazhuce.com:8000/api/"
-        fun get() = NetworkClient.getInstance().get(BASE_URL, OneService::class.java)
+        /*fun get() = NetworkClient.getInstance().get(BASE_URL, OneService::class.java)*/
         fun create() = NetworkClient.getInstance().create(BASE_URL, OneService::class.java)
     }
 

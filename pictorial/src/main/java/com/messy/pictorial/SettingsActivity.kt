@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -32,6 +33,14 @@ class SettingsActivity : AppCompatActivity() {
         }
         updateTime.setOnClickListener { selectUpdateTime() }
         userGuide.setOnClickListener { startActivity(Intent(this, Welcome::class.java)) }
+        versionName.text = getApkInfoLocal(this).versionName
+        checkUpdateButton.setOnClickListener {
+            val popupWindow = wait()
+            /*checkUpdate(this).observe(this, Observer {
+
+            })*/
+
+        }
     }
 
     private fun selectUpdateTime() {

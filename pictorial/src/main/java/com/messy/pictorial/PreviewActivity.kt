@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.transition.Fade
-import androidx.transition.TransitionManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -37,7 +35,7 @@ class PreviewActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
     private val showControls = Runnable {
-        TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
+        //TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
         controls.visibility = View.VISIBLE
     }
     private val hideRunnable = Runnable { /*hide()*/ }
@@ -46,6 +44,9 @@ class PreviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        photoView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         setContentView(R.layout.activity_preview)
         mVisible = true
         photoView.minimumScale = 1f
@@ -117,7 +118,7 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun hide() {
-        TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
+        //TransitionManager.beginDelayedTransition(controls.parent as ViewGroup, fade)
         controls.visibility = View.GONE
         mVisible = false
         mHideHandler.removeCallbacks(showControls)

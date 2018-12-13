@@ -2,13 +2,18 @@
 
 package com.messy.pictorial
 
+import android.app.Activity
 import android.graphics.drawable.Drawable
+import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupWindow
 import androidx.annotation.IdRes
 import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.messy.adapter.ViewHolder
+import com.messy.util.inflate
 
 fun ImageView.clear() {
     GlideApp.with(this).clear(this)
@@ -37,4 +42,15 @@ fun ViewHolder.load(
 ) {
     view<ImageView>(viewId).clear()
     view<ImageView>(viewId).load(obj, option, null, translation)
+}
+
+fun Activity.wait(): PopupWindow {
+    val popupWindow = PopupWindow(this)
+    popupWindow.apply {
+        contentView = inflate(R.layout.wait, window.decorView as ViewGroup, false)
+        width = ViewGroup.LayoutParams.WRAP_CONTENT
+        height = ViewGroup.LayoutParams.WRAP_CONTENT
+    }
+    popupWindow.showAtLocation(window.decorView, Gravity.CENTER, 0, 0)
+    return popupWindow
 }
