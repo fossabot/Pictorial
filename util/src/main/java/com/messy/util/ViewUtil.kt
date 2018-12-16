@@ -2,12 +2,14 @@
 
 package com.messy.util
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.Interpolator
 import android.view.animation.LayoutAnimationController
 import android.view.animation.LinearInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.CompoundButton
 import android.widget.RadioGroup
 import androidx.annotation.AnimRes
@@ -130,8 +132,24 @@ inline fun View?.removeInParent() {
     (this?.parent as? ViewGroup)?.removeView(this)
 }
 
+inline val View?.parentView: ViewGroup?
+    get() {
+        return (this?.parent as? ViewGroup)
+    }
+
 inline fun ViewGroup.foreach(block: (View) -> Unit) {
     for (i in 0 until childCount) {
         block(get(i))
     }
+}
+
+fun View.openKeyBoard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(this, InputMethodManager.RESULT_SHOWN)
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+}
+
+fun View.closeKeyBoard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(this.windowToken, 0)
 }

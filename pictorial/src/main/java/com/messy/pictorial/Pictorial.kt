@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.messy.delegate.MMap
+import com.messy.pictorial.swipebackhelper.SwipeBackHelper
 import com.messy.pictorial.thread.ThreadPool
 import com.messy.util.switch2All
 import com.messy.util.switch2Debug
@@ -19,6 +20,7 @@ class Pictorial : Application() {
         LockPictorialNotification.init(this)
         if (isMainProcess()) {
             LitePal.initialize(this)
+            SwipeBackHelper.init(this)
         }
     }
 

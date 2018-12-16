@@ -29,7 +29,7 @@ android {
             }
         }
         debug {
-           /* applicationIdSuffix ".debug"*/
+            applicationIdSuffix ".debug"
             /* ndk {
                 abiFilters "armeabi-v7a"
             }*/

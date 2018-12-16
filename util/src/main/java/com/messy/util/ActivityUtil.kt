@@ -4,9 +4,12 @@ package com.messy.util
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
+import com.google.android.material.snackbar.Snackbar
 
 var Activity.backgroundAlpha: Float
     get() = window.attributes.alpha
@@ -67,4 +70,26 @@ fun Activity.setFullScreen() {
 
 fun Activity.restoreScreen() {
     window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+}
+
+
+fun applySnackBar(snack: Snackbar) {
+    val ta = snack.context.obtainStyledAttributes(intArrayOf(android.R.attr.colorPrimary))
+    snack.view.setBackgroundColor(ta.getColor(0, Color.BLACK))
+    snack.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).setTextColor(Color.WHITE)
+    ta.recycle()
+}
+
+fun Activity.snack(msg: CharSequence): Snackbar {
+    val snack = Snackbar.make(window.decorView, msg, Snackbar.LENGTH_SHORT)
+    snack.show()
+    applySnackBar(snack)
+    return snack
+}
+
+fun Activity.longSnack(msg: CharSequence): Snackbar {
+    val snack = Snackbar.make(window.decorView, msg, Snackbar.LENGTH_LONG)
+    snack.show()
+    applySnackBar(snack)
+    return snack
 }

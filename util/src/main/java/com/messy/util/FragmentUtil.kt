@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.NavHostFragment
-import com.messy.util.*
+import com.google.android.material.snackbar.Snackbar
 
 inline var Fragment.backgroundAlpha: Float
     get() = activity!!.backgroundAlpha
@@ -89,3 +89,17 @@ inline val Fragment.displayWidth: Int
 
 inline val Fragment.displayHeight: Int
     get() = context!!.displayHeight
+
+inline fun Fragment.snack(msg: CharSequence): Snackbar {
+    val snack = Snackbar.make(view!!, msg, Snackbar.LENGTH_SHORT)
+    snack.show()
+    applySnackBar(snack)
+    return snack
+}
+
+inline fun Fragment.longSnack(msg: CharSequence): Snackbar {
+    val snack = Snackbar.make(view!!, msg, Snackbar.LENGTH_LONG)
+    snack.show()
+    applySnackBar(snack)
+    return snack
+}

@@ -5,15 +5,15 @@ package com.messy.util
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
-inline val Context.windowManager: WindowManager
-    get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
 inline fun Context.toast(charSequence: CharSequence) {
     Toast.makeText(this, charSequence, Toast.LENGTH_SHORT).show()
@@ -49,5 +49,6 @@ fun Context.getFilePathByUri(uri: Uri) {
         }
     }
 }*/
+
 
 

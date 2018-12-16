@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.core.app.ActivityOptionsCompat
@@ -16,15 +17,23 @@ import com.messy.adapter.ViewAdapter
 import com.messy.adapter.ViewHolder
 import com.messy.pictorial.model.daydream.Story
 import com.messy.pictorial.mvvm.Activity
-import com.messy.util.removeInParent
-import com.messy.util.setHeight
-import com.messy.util.setItemAnimation
-import com.messy.util.statusBarHeight
+import com.messy.pictorial.swipebackhelper.SwipeBackHelper
+import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity<StoryViewModel>() {
 
     private lateinit var adapter: ViewAdapter<Story, ViewHolder>
+
+    private val swipeBackHelper = SwipeBackHelper()
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val consume = swipeBackHelper.progressTouchEvent(ev)
+        return if (!consume)
+            super.dispatchTouchEvent(ev)
+        else
+            false
+    }
 
     override fun getViewModelClass(): Class<StoryViewModel> = StoryViewModel::class.java
 
@@ -91,7 +100,10 @@ class MainActivity : Activity<StoryViewModel>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings -> startActivity(Intent(this, SettingsActivity::class.java))
+            R.id.settings -> {
+                startActivity<SettingsActivity>()
+                //overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+            }
         }
         return true
     }

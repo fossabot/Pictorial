@@ -3,6 +3,7 @@ package com.messy.pictorial
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -10,10 +11,21 @@ import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.messy.pictorial.swipebackhelper.SwipeBackHelper
 import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
+
+    private val swipeBackHelper = SwipeBackHelper()
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val consume = swipeBackHelper.progressTouchEvent(ev)
+        return if (!consume)
+            super.dispatchTouchEvent(ev)
+        else
+            false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +69,7 @@ class SettingsActivity : AppCompatActivity() {
                                         progressDialog.cancel()
                                     progressDialog.progress = result.progress
                                 } else {
-                                    showTip(string(R.string.download_wrong))
+                                    snack(string(R.string.download_wrong))
                                     progressDialog.cancel()
                                 }
                             })
@@ -68,7 +80,7 @@ class SettingsActivity : AppCompatActivity() {
                         .create()
                     dialog.show()
                 } else {
-                    showTip(string(R.string.cannot_update))
+                    snack(string(R.string.cannot_update))
                 }
             })
 

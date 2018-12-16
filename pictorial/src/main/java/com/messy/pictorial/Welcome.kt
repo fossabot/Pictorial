@@ -5,12 +5,25 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.messy.pictorial.swipebackhelper.SwipeBackHelper
 import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class Welcome : AppCompatActivity() {
+
+    private val swipeBackHelper = SwipeBackHelper()
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val consume = swipeBackHelper.progressTouchEvent(ev)
+        return if (!consume)
+            super.dispatchTouchEvent(ev)
+        else
+            false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -34,37 +47,37 @@ class Welcome : AppCompatActivity() {
         when (type) {
             CHECK_BOOT -> {
                 if (checkCanReceiveBootCompleted()) {
-                    showTip("当前已获取开机启动权限")
+                    snack("当前已获取开机启动权限")
                 } else {
-                    showTip("当前未获取开机启动权限")
+                    snack("当前未获取开机启动权限")
                 }
             }
             CHECK_BACKGROUND_RUN -> {
                 if (checkCanBackgroundRun()) {
-                    showTip("当前已获取后台运行权限")
+                    snack("当前已获取后台运行权限")
                 } else {
-                    showTip("当前未获取后台运行权限")
+                    snack("当前未获取后台运行权限")
                 }
             }
             CHECK_LOCK_SCREEN -> {
                 if (checkCanShowOnLockScreen()) {
-                    showTip("当前已获取锁屏显示权限")
+                    snack("当前已获取锁屏显示权限")
                 } else {
-                    showTip("当前未获取锁屏显示权限")
+                    snack("当前未获取锁屏显示权限")
                 }
             }
             CHECK_INTERNET -> {
                 if (checkInternetPermission()) {
-                    showTip("当前已获取网络权限")
+                    snack("当前已获取网络权限")
                 } else {
-                    showTip("当前未获取网络权限")
+                    snack("当前未获取网络权限")
                 }
             }
             CHECK_STORAGE -> {
                 if (checkCanReadAndWrite()) {
-                    showTip("当前已获取SD卡读取权限")
+                    snack("当前已获取SD卡读取权限")
                 } else {
-                    showTip("当前未获取SD卡读取权限")
+                    snack("当前未获取SD卡读取权限")
                 }
             }
         }
