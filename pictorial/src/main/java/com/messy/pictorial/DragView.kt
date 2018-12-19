@@ -37,7 +37,7 @@ class DragView : FrameLayout {
         { _: View, _: Int, _: Int, _: Int, _: Int -> false }
     var dragDirection = ALL
     var dragLimitFactor = 0.1f
-    private var curDirection = ALL
+    //private var curDirection = ALL
     fun setDragEventListener(listener: DragEventListener) {
         this.listener = listener
     }
@@ -94,6 +94,7 @@ class DragView : FrameLayout {
         private val origin = Point()
         private val current = Point()
         private var callEvent = true
+        private var dir = -1
         private lateinit var target: View
         override fun tryCaptureView(child: View, pointerId: Int): Boolean {
             if (child == getChildAt(0)) {
@@ -111,7 +112,7 @@ class DragView : FrameLayout {
             val a = sqrt(((top - origin.y) * (top - origin.y) + (left - origin.x) * (left - origin.x)).toFloat())
             val b =
                 sqrt(((measuredHeight - origin.y) * (measuredHeight - origin.y) + (measuredHeight - origin.x) * (measuredHeight - origin.x)).toFloat())
-            val factor = 1 - a / b
+            val factor = 1 - a / (b * 0.5f)
             if (background != null)
                 background.alpha = (255 * factor).toInt()
             if (dragDirection == ALL) {
@@ -120,6 +121,15 @@ class DragView : FrameLayout {
             }
             /*val r = if (top > origin.y) -1 else 1
             target.rotation = factor * 90 * r*/
+            if (dir == -1) {
+                dir = dragDirection
+            }
+            when (dir) {
+                LEFT -> dragDirection = LEFT or RIGHT
+                RIGHT -> dragDirection = LEFT or RIGHT
+                UP -> dragDirection = UP or DOWN
+                DOWN -> dragDirection = UP or DOWN
+            }
             disListener?.onDistanceChange(factor)
             callEvent = positionCondition(changedView, left, top, dx, dy) ||
                     (!positionCondition(changedView, left, top, dx, dy) &&
@@ -134,8 +144,10 @@ class DragView : FrameLayout {
                 } else {
                     viewDragHelper.settleCapturedViewAt(origin.x, origin.y)
                     invalidate()
-                    curDirection = dragDirection
+                    //curDirection = dragDirection
                 }
+                dragDirection = dir
+                dir = -1
             }
         }
 

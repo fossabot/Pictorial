@@ -30,14 +30,15 @@ class BottomMenu private constructor() {
         private var customView: View? = null
         private var positiveText: String? = null
         private var negativeText: String? = null
-        private lateinit var positiveClick: (View) -> Unit
-        private lateinit var negativeClick: (View) -> Unit
+        private var positiveClick: (View) -> Unit = { dismiss() }
+        private var negativeClick: (View) -> Unit = { dismiss() }
 
         var isNoFrame = false
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomMenu)
+            retainInstance = true
         }
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -93,8 +94,8 @@ class BottomMenu private constructor() {
         private val bottomMenu = BottomMenu()
         private var positiveText: String? = null
         private var negativeText: String? = null
-        private var positiveClick: ((View) -> Unit)? = null
-        private var negativeClick: ((View) -> Unit)? = null
+        private var positiveClick: ((View) -> Unit) = { bottomMenu.dismiss() }
+        private var negativeClick: ((View) -> Unit) = { bottomMenu.dismiss() }
 
         private var isNoFrame: Boolean = false
 
@@ -142,14 +143,10 @@ class BottomMenu private constructor() {
         }
 
         fun build(): BottomMenu {
-            if (positiveClick == null)
-                positiveClick = { bottomMenu.dismiss() }
-            bottomMenu.bottomDialogFragment.setPositiveButton(positiveClick!!)
+            bottomMenu.bottomDialogFragment.setPositiveButton(positiveClick)
             bottomMenu.bottomDialogFragment.setPositiveText(positiveText)
             /*-----------------------------------------------------------------*/
-            if (negativeClick == null)
-                negativeClick = { bottomMenu.dismiss() }
-            bottomMenu.bottomDialogFragment.setNegativeButton(negativeClick!!)
+            bottomMenu.bottomDialogFragment.setNegativeButton(negativeClick)
             bottomMenu.bottomDialogFragment.setNegativeText(negativeText)
             bottomMenu.bottomDialogFragment.isNoFrame = isNoFrame
             return bottomMenu

@@ -1,30 +1,41 @@
 package com.messy.pictorial
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.transition.TransitionManager
 import com.messy.pictorial.mvvm.Activity
-import com.messy.util.displayHeight
-import com.messy.util.inVisible
-import com.messy.util.string
-import com.messy.util.visible
+import com.messy.util.*
 import kotlinx.android.synthetic.main.activity_lock_screen.*
+import java.util.*
 
 
 class LockScreenActivity : Activity<StoryViewModel>() {
 
     private var isResume = false
     private var isLoad = false
+    private var isPause = false
+
     override fun getViewModelClass(): Class<StoryViewModel> = StoryViewModel::class.java
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lock_screen)
         applyOption()
         isLoad = false
         isResume = false
+        isPause = false
+        val wallpaperManager = wallpaperManager
+        wallpaperView.load(wallpaperManager.drawable)
+        topDate.text = viewModel.getTodayDate(string(R.string.lock_date_format))
+        val calendar = Calendar.getInstance()
+        viewModel.getTime { !isPause }.observe(this, Observer {
+            calendar.time = it
+            topTime.text = "${calendar[Calendar.HOUR]}:${calendar[Calendar.MINUTE]}"
+        })
         dragView.dragDirection = DragView.RIGHT
         dragView.dragLimitFactor = 0.15f
         dragView.setDragEventListener { finish() }
@@ -60,10 +71,16 @@ class LockScreenActivity : Activity<StoryViewModel>() {
         applyOption()
     }
 
+    override fun onPause() {
+        super.onPause()
+        isPause = true
+    }
+
     override fun onResume() {
         super.onResume()
         isResume = true
         startAnim()
+        isPause = false
     }
 
     private fun startAnim() {

@@ -7,8 +7,6 @@ import com.bumptech.glide.Glide
 import com.messy.delegate.MMap
 import com.messy.pictorial.swipebackhelper.SwipeBackHelper
 import com.messy.pictorial.thread.ThreadPool
-import com.messy.util.switch2All
-import com.messy.util.switch2Debug
 import org.litepal.LitePal
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -18,6 +16,7 @@ class Pictorial : Application() {
         super.onCreate()
         MMap.init(this)
         LockPictorialNotification.init(this)
+        CrashHandler.getInstance().init(this)
         if (isMainProcess()) {
             LitePal.initialize(this)
             SwipeBackHelper.init(this)

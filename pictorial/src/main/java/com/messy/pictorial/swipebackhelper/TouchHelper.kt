@@ -182,6 +182,6 @@ class TouchHelper(private val lifecycleHelper: ActivityLifecycleHelper) {
         }
         shadowView?.x = -shadowWidth + rawX
         shadowView?.alpha = 1 - (rawX / context.displayWidth)
-        Log.d("TH", "alpha=${shadowView!!.alpha}")
+        Log.d("TH", "alpha=${shadowView?.alpha}")
     }
 }

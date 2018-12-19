@@ -29,4 +29,7 @@
     <string name="update_now">正在更新</string>
     <string name="update_progress">当前更新</string>
     <string name="download_wrong">下载出错</string>
+    <string name="crash_tip">遇到未知错误，即将重新启动</string>
+
+    <string name="lock_date_format">yyyy-MM-dd</string>
 </resources>

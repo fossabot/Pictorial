@@ -70,7 +70,7 @@ class MainActivity : Activity<StoryViewModel>() {
         recyclerView.adapter = adapter
         recyclerView.setItemAnimation(R.anim.read_item_enter, 0.15f, DecelerateInterpolator())
         var first = true
-        viewModel.getStroies().observe(this, Observer {
+        viewModel.getStories().observe(this, Observer {
             adapter.addAll(it)
             if (first) {
                 first = false
