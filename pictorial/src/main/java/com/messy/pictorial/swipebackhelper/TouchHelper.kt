@@ -20,6 +20,7 @@ class TouchHelper(private val lifecycleHelper: ActivityLifecycleHelper) {
         const val STATE_IDLE = 0
         const val STATE_DRAGGING = 1
         const val STATE_SETTLING = 2
+        var isFullScreen = false
     }
 
 
@@ -40,7 +41,7 @@ class TouchHelper(private val lifecycleHelper: ActivityLifecycleHelper) {
     private var needClearColorCurrent = false
     private var needClearColorPrevious = false
 
-    var isFullScreen = false
+
 
     private fun init() {
         if (isInit) return

@@ -23,10 +23,10 @@ class SwipeBackHelper {
 
     private val touchHelper = TouchHelper(getLifecycleHelper())
 
-    var isFullScreen
-        get() = touchHelper.isFullScreen
+    var isFullScreen: Boolean
+        get() = TouchHelper.isFullScreen
         set(value) {
-            touchHelper.isFullScreen = value
+            TouchHelper.isFullScreen = value
         }
 
     fun progressTouchEvent(ev: MotionEvent): Boolean {

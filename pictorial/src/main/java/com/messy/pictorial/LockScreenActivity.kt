@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.transition.TransitionManager
 import com.messy.pictorial.mvvm.Activity
 import com.messy.util.*
@@ -28,11 +29,12 @@ class LockScreenActivity : Activity<StoryViewModel>() {
         isLoad = false
         isResume = false
         isPause = false
+        val dateViewModel = ViewModelProviders.of(this).get(DateViewModel::class.java)
         val wallpaperManager = wallpaperManager
         wallpaperView.load(wallpaperManager.drawable)
-        topDate.text = viewModel.getTodayDate(string(R.string.lock_date_format))
+        topDate.text = dateViewModel.getTodayDate(string(R.string.lock_date_format))
         val calendar = Calendar.getInstance()
-        viewModel.getTime { !isPause }.observe(this, Observer {
+        dateViewModel.getTime().observe(this, Observer {
             calendar.time = it
             topTime.text = "${calendar[Calendar.HOUR]}:${calendar[Calendar.MINUTE]}"
         })
