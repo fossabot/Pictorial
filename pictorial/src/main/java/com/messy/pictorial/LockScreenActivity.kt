@@ -17,7 +17,6 @@ class LockScreenActivity : Activity<StoryViewModel>() {
 
     private var isResume = false
     private var isLoad = false
-    private var isPause = false
 
     override fun getViewModelClass(): Class<StoryViewModel> = StoryViewModel::class.java
 
@@ -28,7 +27,6 @@ class LockScreenActivity : Activity<StoryViewModel>() {
         applyOption()
         isLoad = false
         isResume = false
-        isPause = false
         val dateViewModel = ViewModelProviders.of(this).get(DateViewModel::class.java)
         val wallpaperManager = wallpaperManager
         wallpaperView.load(wallpaperManager.drawable)
@@ -73,23 +71,17 @@ class LockScreenActivity : Activity<StoryViewModel>() {
         applyOption()
     }
 
-    override fun onPause() {
-        super.onPause()
-        isPause = true
-    }
-
     override fun onResume() {
         super.onResume()
         isResume = true
         startAnim()
-        isPause = false
     }
 
     private fun startAnim() {
         if (isResume && isLoad) {
-            lockScreen.inVisible()
-            TransitionManager.beginDelayedTransition(lockScreen)
-            lockScreen.visible()
+            image.inVisible()
+            TransitionManager.beginDelayedTransition(dragView)
+            image.visible()
             isResume = false
         }
     }

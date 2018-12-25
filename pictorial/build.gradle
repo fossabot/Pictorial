@@ -42,6 +42,11 @@ androidExtensions {
     experimental = true
 }
 
+//set no compress models
+//aaptOptions {
+//    noCompress "tflite"
+//}
+
 repositories {
     flatDir {
         dirs 'libs'   // aar目录
@@ -59,15 +64,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1-alpha01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-alpha01'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     //Material
     implementation "com.google.android.material:material:1.0.0"
     //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.0.0"
+//    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.0.0"
     //WorkManager
-    implementation "android.arch.work:work-runtime:1.0.0-alpha11"
+    implementation "android.arch.work:work-runtime:1.0.0-beta01"
     implementation "android.arch.work:work-firebase:1.0.0-alpha11"
     //LifecycleBus
     implementation 'com.jeremyliao:live-event-bus:0.0.1'
@@ -95,4 +100,6 @@ dependencies {
     //compile "org.jetbrains.kotlin:kotlin-reflect:1.3.0"
     //implementation 'com.tencent:mmkv-static:1.0.14'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    //
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
 }

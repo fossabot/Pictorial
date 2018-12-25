@@ -10,7 +10,7 @@ class UpdateReadingWork(context: Context, workerParams: WorkerParameters) : Work
         if (Config.isNeedToUpdate()) {
 
         }
-        return Result.SUCCESS
+        return Result.success()
     }
 
 }

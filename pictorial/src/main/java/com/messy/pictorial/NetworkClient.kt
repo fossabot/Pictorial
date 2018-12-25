@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkClient private constructor() {
     companion object {
-        /*private const val ACCESS_KEY = "0ed2f50d804ab3665cb9f034a216146af7f9d8732d2d3b4cf37dba7e91b92aa5"*/
+
         private val lock = Any()
         private var instance: NetworkClient? = null
         @Suppress("SpellCheckingInspection")
@@ -87,19 +87,7 @@ class NetworkClient private constructor() {
     private fun getOkHttpClient(): OkHttpClient {
         if (okHttpClient == null) {
             val builder = OkHttpClient.Builder()
-            builder.addInterceptor {
-                /*val origin = it.request()
-                val builderInterval = origin.newBuilder().method(origin.method(), origin.body())
-                    .addHeader("Authorization", "Client-ID $ACCESS_KEY")
-                    .addHeader("Accept-Version", "v1")
-                it.proceed(builderInterval.build())*/
-                it.proceed(
-                    it.request().newBuilder().removeHeader("User-Agent").addHeader(
-                        "User-Agent",
-                        "android-async-http/2.0 (http://loopj.com/android-async-http)"
-                    ).build()
-                )
-            }
+            builder.addInterceptor(OneUA())
             if (BuildConfig.DEBUG) {
                 builder.addInterceptor(HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
