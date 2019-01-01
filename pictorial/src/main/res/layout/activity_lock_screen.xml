@@ -34,6 +34,14 @@
     </com.messy.pictorial.DragView>
 
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:background="@drawable/lock_text_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/text"
         android:layout_width="0dp"
@@ -100,9 +108,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="18dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/time"
         android:textColor="@android:color/white"
         android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,12 +125,13 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="18dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/time"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTime"
         tools:text="Wed Dec 2019" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

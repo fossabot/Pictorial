@@ -16,8 +16,6 @@
             android:id="@+id/photoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
             tools:src="#393535" />
     </com.messy.pictorial.DragView>
 
